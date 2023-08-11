@@ -3,14 +3,14 @@
 =============================================*/
 :root {
     /* COLORS */
-    --primary: #f65151;
-    --secondary: #f6a451;
-    --tertiary: #5f7adb;
+    --primary: #FDE27E;
+    --secondary: #f31d3d;
+    --tertiary: #118dd6;
   
     --darkBg: #2e2828;
     --lightBg: #413e3e;
   
-    --white: #fef4f4;
+    --white: #feeeb8;
     --paragraph: #b9c6f3;
 
     --error: #f65151;
@@ -303,6 +303,46 @@ label.file-input {
 	transition: 0.2s ease-out;
 }
 
+.submit-btn:hover {
+	background-color: var(--tertiary);
+}
+
+/* POST BTN */
+.post-btn {
+	background-color: var(--tertiary);
+	border: none;
+	border-radius: 3px;
+	color: var(--darkBg);
+	cursor: pointer;
+	font-family: var(--pFont);
+	font-weight: bold;
+	padding: 0.7rem 1rem;
+	text-transform: uppercase;
+	transition: 0.2s ease-out;
+}
+
+.post-btn:hover {
+	background-color: var(--primary);
+}
+
+/* SHARE BTN */
+.share-btn {
+	background-color: var(--tertiary);
+	border: none;
+	border-radius: 3px;
+	width: 200px;
+	color: var(--darkBg);
+	cursor: pointer;
+	font-family: var(--pFont);
+	font-weight: bold;
+	padding: 0.7rem 1rem;
+	text-transform: uppercase;
+	transition: 0.2s ease-out;
+}
+
+.share-btn:hover {
+	background-color: var(--primary);
+}
 /* FORM ALT LINK */
 .formDivider {
 	border: 1px solid var(--paragraph);
@@ -783,7 +823,7 @@ header {
 #navLinks a {
   background-color: var(--primary);
   border-radius: 5px;
-  color: var(--white);
+  color: var(--darkBg);
   font-weight: bold;
   padding: 0.7rem 1.2rem;
   text-decoration: none;
@@ -842,7 +882,7 @@ header {
 #navMenuLinks a {
   background-color: var(--primary);
   border-radius: 5px;
-  color: var(--white);
+  color: var(--darkBg);
   display: block;
   font-weight: bold;
   padding: 0.7rem 1.2rem;

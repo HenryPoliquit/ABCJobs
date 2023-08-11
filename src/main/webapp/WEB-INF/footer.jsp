@@ -15,13 +15,13 @@
 		<sec:authorize access="!isAuthenticated()">
 			<a href="home" class="align-center text-deco-none"> <img
 				src="images/Logo.png" alt="Logo" width="75" />
-				<h1>Meals on Wheels</h1>
+				<h1>ABC Jobs</h1>
 			</a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<a href="dashboard" class="align-center text-deco-none"> <img
 				src="images/Logo.png" alt="Logo" width="75" />
-				<h1>Meals on Wheels</h1>
+				<h1>ABC Jobs</h1>
 			</a>
 		</sec:authorize>
 	</div>
@@ -42,13 +42,13 @@
 					<li><a href="login">Login</a></li>
 					<li><a href="register">Sign Up</a></li>
 				</sec:authorize>
-				<sec:authorize access="hasRole('Member')">
+				<sec:authorize access="hasRole('Users')">
 				<h5 class="footerSubHeader">Meals</h5>
 					<li><a href="order">Order a Meal</a></li>
 					<li><a href="ongoing-orders">View Pending Orders</a></li>
 					<li><a href="profile">View Order History</a></li>
 				</sec:authorize>
-				<sec:authorize access="hasRole('Donator')">
+				<sec:authorize access="hasRole('Administrator')">
 				<h5 class="footerSubHeader">Donation</h5>
 					<li><a href="donation">Donate</a></li>
 					<li><a href="profile">View Donation History</a></li>
@@ -60,9 +60,9 @@
 		<div id="footerMidR">
 			<div id="contactBlock" class="align-end flex-col pFont">
 				<h5 class="hFont">Contact Us</h5>
-				<p>+63 1075693</p>
-				<p>meals.on.wheels@gmail.com</p>
-				<p>404 Address st. Country</p>
+				<p>+1-800-123-4567</p>
+				<p>info@abcjobs.com</p>
+				<p>123 Main Street, Suite 456, NY</p>
 			</div>
 		</div>
 	</div>
@@ -84,4 +84,5 @@
 </body>
 <script type="text/javascript" src="js/form-validation.js"></script>
 <script type="text/javascript" src="js/nav-menu.js"></script>
+<script type="text/javascript" src="js/post.js"></script>
 </html>

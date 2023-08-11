@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meals on Wheels | <%=request.getParameter("HTMLtitle") != null ? request.getParameter("HTMLtitle") : "MerryMeal"%></title>
+<title>ABC Jobs | <%=request.getParameter("HTMLtitle") != null ? request.getParameter("HTMLtitle") : "ABC Jobs"%></title>
 
 <link rel="icon" href="images/Logo.png" type="image/png">
 
@@ -22,9 +22,6 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
 	rel="stylesheet">
-<script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
-<script src="https://cdn.anychart.com/releases/8.0.0/themes/dark_earth.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
@@ -36,13 +33,13 @@
 			<sec:authorize access="!isAuthenticated()">
 				<a href="home" class="align-center text-deco-none"> <img
 					src="images/Logo.png" alt="Logo" width="75" />
-					<h1>Meals on Wheels</h1>
+					<h1>ABC Jobs</h1>
 				</a>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<a href="dashboard" class="align-center text-deco-none"> <img
 					src="images/Logo.png" alt="Logo" width="75" />
-					<h1>Meals on Wheels</h1>
+					<h1>ABC Jobs</h1>
 				</a>
 			</sec:authorize>
 

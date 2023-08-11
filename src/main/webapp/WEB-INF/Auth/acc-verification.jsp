@@ -14,11 +14,11 @@
 	
 	<section class="align-center flex-col form-card">
 		<h3 class="form-heading">Verify your account</h3>
-		<sf:form action="verify_user" method="post" id="codeForm"
+		<sf:form action="verify-account" method="post" id="codeForm"
 			class="align-center flex-col form" onsubmit="validateCode(event)">
 			<div class="input-group">
-				<input type="hidden" name="username" autocomplete="off"
-					id="username" class="input" value="${username}" /> <input required="true" type="text"
+				<input type="hidden" name="email" autocomplete="off"
+					id="email" class="input" value="${email}" /> <input required="true" type="text"
 					name="code" autocomplete="off" id="code" class="input" onkeyup="validateCode()" /> <label
 					class="user-label">Enter Code</label>
 			</div>

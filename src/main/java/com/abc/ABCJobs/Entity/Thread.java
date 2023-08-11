@@ -4,20 +4,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-public class Post {
+public class Thread {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,12 +22,8 @@ public class Post {
 	private String name;
 
 	private String description;
-
-	@Column(nullable = true, length = 64)
-	private String photos;
-
-	@Column(nullable = true, length = 64)
-	private String photoImagePath;
+	
+	private Long user_id;
 	
 	@CreatedDate
 	private String date;
@@ -42,27 +35,18 @@ public class Post {
 		date = dateOnly.format(new Date());
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-	public Post() {
+	public Thread() {
 		super();
 	}
 
-	public Post(Long id, String name, String description, String photos, String photoImagePath, String date,
-			User user) {
+	public Thread(Long id, String name, String description, Long user_id, String date) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.photos = photos;
-		this.photoImagePath = photoImagePath;
+		this.user_id = user_id;
 		this.date = date;
-		this.user = user;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -88,20 +72,12 @@ public class Post {
 		this.description = description;
 	}
 
-	public String getPhotos() {
-		return photos;
+	public Long getUser_id() {
+		return user_id;
 	}
 
-	public void setPhotos(String photos) {
-		this.photos = photos;
-	}
-
-	public String getPhotoImagePath() {
-		return photoImagePath;
-	}
-
-	public void setPhotoImagePath(String photoImagePath) {
-		this.photoImagePath = photoImagePath;
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getDate() {
@@ -111,18 +87,5 @@ public class Post {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	public User getUser() {
-		return user;
-	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", name=" + name + ", description=" + description + ", photos=" + photos
-				+ ", photoImagePath=" + photoImagePath + ", admin_id=" + ", date=" + date + "]";
-	}
 }

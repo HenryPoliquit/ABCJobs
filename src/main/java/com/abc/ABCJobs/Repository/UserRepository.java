@@ -11,6 +11,7 @@ import com.abc.ABCJobs.Entity.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	
 	User findByUserName(String name);
+	User findByEmail(String email);
 	
 	@Query("UPDATE User u SET u.enabled = true WHERE u.id = ?1")
 	@Modifying

@@ -57,7 +57,7 @@
     }
     
 
-    // MODAL
+    // PROFILE MODAL
     const modal = document.querySelector("#editProfileModal");
     const openModal = document.querySelector("#editProfile");
     const closeModal = document.querySelector("#closeEditProfile");
@@ -69,4 +69,3 @@
     	closeModal.addEventListener("click", () => {
     	  modal.close();
     	});
-    

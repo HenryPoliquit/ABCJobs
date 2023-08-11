@@ -36,10 +36,10 @@ public class UserService {
 		return roleRepository.findRoles();
 	}
 	
-	public String save(User user, String role) {
+	public String save(User user) {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
-		user.setRoles(new HashSet<>(roleRepository.findBySpecificRoles(role)));
+		user.setRoles(new HashSet<>(roleRepository.findBySpecificRoles("Users")));
 		
 		userRepository.save(user);
 		
@@ -57,13 +57,30 @@ public class UserService {
 		return userRepository.findByUserName(userName);
 	}
 	
+	public User findEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+	
 	public List<User> showAllUser(){
 		
 		return userRepository.findAll();
 	}
 	
-	public String update(User user) {
+	public String updateCode(User user) {
+		userRepository.save(user);
 		
+		return "User Profile updated";	
+	}
+	
+	public String updateProfile(User user) {
+		userRepository.save(user);
+		
+		return "User Profile updated";	
+	}
+	
+	public String update(User user) {
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
 		userRepository.save(user);
 		
 		return "User updated";

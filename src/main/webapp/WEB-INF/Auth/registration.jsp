@@ -43,16 +43,6 @@
 					onkeyup="validatePassword()" />
 				<label class="user-label">Password</label>
 			</div>
-			<div class="input-group">
-				<label class="select-label">User Type</label> <select id="role"
-					class="input-select" name="role">
-					<option value="" selected disabled hidden>Choose here</option>
-					<c:forEach items="${role}" var="role">
-						<option value="${role.name}">${role.name}</option>
-					</c:forEach>
-
-				</select>
-			</div>
 			<button type="submit" class="submit-btn">Submit</button>
 		</sf:form>
 		<hr class="formDivider">

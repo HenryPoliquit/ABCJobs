@@ -7,8 +7,8 @@
 <main class="bg1 align-center justify-center">
 
 	<div class="align-center error-popup">
-		<span class="material-icons">${error_msg}</span>
-		<p class="pFont error-text"></p>
+		<span class="material-icons"></span>
+		<p class="pFont error-text">${error_msg}</p>
 		<button class="btnAnimation icon material-icons"
 			onclick="closeFormError()">close</button>
 	</div>
@@ -45,6 +45,7 @@
 		</form>
 		
 		<hr class="formDivider">
+		<a href="identify_account" class="altFormLink pFont text-deco-none">Forgot Password?</a>
 		<a href="register" class="altFormLink pFont text-deco-none">Don't
 			have an account?</a>
 			
