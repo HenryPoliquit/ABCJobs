@@ -106,7 +106,7 @@
 		</div>
 
 		<button class="submit-btn btnAnimation"
-			style="background-color: var(- -success);" type="submit">Save</button>
+			style="background-color: var(--success);" type="submit">Save</button>
 	</sf:form>
 	<button id="closeEditProfile" class="material-icons modal-close">close</button>
 	</dialog>

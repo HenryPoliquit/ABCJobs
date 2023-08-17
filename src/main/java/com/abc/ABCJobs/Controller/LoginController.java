@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.abc.ABCJobs.Entity.Comment;
+import com.abc.ABCJobs.Entity.Post;
 import com.abc.ABCJobs.Entity.Role;
 import com.abc.ABCJobs.Entity.User;
 import com.abc.ABCJobs.Service.EmailSenderService;
@@ -94,9 +96,7 @@ public class LoginController {
 	@PostMapping("register_user")
 	public String registerNewUser(@ModelAttribute("user") User user, Model model,
 			HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
-		Random rnd = new Random();
-		int number = rnd.nextInt(999999);
-		String code = String.format("%06d", number);
+		String code = generateCode();
 		String siteURL = Utility.getSiteURL(request);
 		if (userService.findUsername(user.getUserName()) == null
 				|| userService.findUsername(user.getUserName()).getUserName() == null
@@ -104,20 +104,7 @@ public class LoginController {
 			user.setEnabled(false);
 			user.setVerification_code(code);
 			userService.save(user);
-			String verifyURL = siteURL + "/verify?username=" + user.getUserName();
-			String toEmail = user.getEmail();
-			String subject = "Thank you for registering with ABC Jobs";
-			String body = "<p>Dear " + user.getName() + ",</p>";
-			body += "<p>Thank you for registering on ABC Jobs, the leading community portal for job seekers and employers. We are delighted to have you as a member of our platform.</p>";
-			body += "<p>To complete your registration, please verify your account by entering the following code on the verification page:</p>";
-			body += "<a href=\"" + verifyURL + "\">" + user.getVerification_code() + "</a>";
-			body += "<p>This code will expire in 24 hours, so please verify your account as soon as possible.</p>";
-			body += "<p>If you have any questions or issues, please contact our support team at support@abcjobs.com.</p>";
-			body += "<p>We look forward to helping you find your dream job.</p>";
-			body += "<p>Sincerely,</p>";
-			body += "<p>The ABC Jobs Team</p>";
-
-			emailSender.sendEmail(toEmail, subject, body);
+			sendEmail(user, siteURL);
 			return "redirect:verify?username=" + user.getUserName();
 		}
 
@@ -125,6 +112,30 @@ public class LoginController {
 		String error_msg = "Username already exists";
 		model.addAttribute("error_msg", error_msg);
 		return "Auth/registration";
+	}
+
+	public String generateCode() {
+		Random rnd = new Random();
+		int number = rnd.nextInt(999999);
+		String code = String.format("%06d", number);
+		return code;
+	}
+
+	public void sendEmail(User user, String siteURL) throws UnsupportedEncodingException, MessagingException {
+		String verifyURL = siteURL + "/verify?username=" + user.getUserName();
+		String toEmail = user.getEmail();
+		String subject = "Thank you for registering with ABC Jobs";
+		String body = "<p>Dear " + user.getName() + ",</p>";
+		body += "<p>Thank you for registering on ABC Jobs, the leading community portal for job seekers and employers. We are delighted to have you as a member of our platform.</p>";
+		body += "<p>To complete your registration, please verify your account by entering the following code on the verification page:</p>";
+		body += "<a href=\"" + verifyURL + "\">" + user.getVerification_code() + "</a>";
+		body += "<p>This code will expire in 24 hours, so please verify your account as soon as possible.</p>";
+		body += "<p>If you have any questions or issues, please contact our support team at support@abcjobs.com.</p>";
+		body += "<p>We look forward to helping you find your dream job.</p>";
+		body += "<p>Sincerely,</p>";
+		body += "<p>The ABC Jobs Team</p>";
+
+		emailSender.sendEmail(toEmail, subject, body);
 	}
 
 	@GetMapping("identify_account")
@@ -138,24 +149,9 @@ public class LoginController {
 		if (!(userService.findEmail(email) == null)) {
 			User user = userService.findEmail(email);
 			String siteURL = Utility.getSiteURL(request);
-			Random rnd = new Random();
-			int number = rnd.nextInt(999999);
-			String code = String.format("%06d", number);
-			user.setVerification_code(code);
+			user.setVerification_code(generateCode());
 			userService.updateCode(user);
-			String verifyURL = siteURL + "/verify-email?email=" + user.getEmail();
-			String toEmail = user.getEmail();
-			String subject = "Password reset for ABC Jobs";
-			String body = "<p>Dear " + user.getName() + ",</p>";
-			body += "<p>We have received a request to reset your password for your account. To verify your identity, please enter the following 6-digit code in the password reset page:</p>";
-			body += "<a href=\"" + verifyURL + "\">" + user.getVerification_code() + "</a>";
-			body += "<p>This code will expire in 24 hours, so please verify your account as soon as possible.</p>";
-			body += "<p>If you have any questions or issues, please contact our support team at support@abcjobs.com.</p>";
-			body += "<p>We look forward to helping you find your dream job.</p>";
-			body += "<p>Sincerely,</p>";
-			body += "<p>The ABC Jobs Team</p>";
-
-			emailSender.sendEmail(toEmail, subject, body);
+			sendForgotEmail(user, siteURL);
 			return "redirect:verify-email?email=" + user.getEmail();
 		} else {
 			return "redirect:identify_account";
@@ -198,6 +194,22 @@ public class LoginController {
 		user.setPassword(password);
 		userService.update(user);
 		return "Auth/pass-confirmation";
+	}
+	
+	public void sendForgotEmail(User user, String siteURL) throws UnsupportedEncodingException, MessagingException {
+		String verifyURL = siteURL + "/verify-email?email=" + user.getEmail();
+		String toEmail = user.getEmail();
+		String subject = "Password reset for ABC Jobs";
+		String body = "<p>Dear " + user.getName() + ",</p>";
+		body += "<p>We have received a request to reset your password for your account. To verify your identity, please enter the following 6-digit code in the password reset page:</p>";
+		body += "<a href=\"" + verifyURL + "\">" + user.getVerification_code() + "</a>";
+		body += "<p>This code will expire in 24 hours, so please verify your account as soon as possible.</p>";
+		body += "<p>If you have any questions or issues, please contact our support team at support@abcjobs.com.</p>";
+		body += "<p>We look forward to helping you find your dream job.</p>";
+		body += "<p>Sincerely,</p>";
+		body += "<p>The ABC Jobs Team</p>";
+
+		emailSender.sendEmail(toEmail, subject, body);
 	}
 
 	@GetMapping("verify")
@@ -278,5 +290,17 @@ public class LoginController {
 		redir.addFlashAttribute("success_msg", success_msg);
 
 		return "redirect:profile";
+	}
+	
+	@GetMapping("view_profile")
+	public String viewOtherProfile(@RequestParam long uId, Model model, Principal principal) {
+		
+		User userdata = userService.findSpecificUser(uId);
+		List<User> user = new ArrayList<User>();
+		user.add(userdata);
+		
+		model.addAttribute("user", user);
+		
+		return "Common/view-profile";
 	}
 }

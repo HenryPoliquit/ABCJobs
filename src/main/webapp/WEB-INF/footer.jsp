@@ -85,4 +85,7 @@
 <script type="text/javascript" src="js/form-validation.js"></script>
 <script type="text/javascript" src="js/nav-menu.js"></script>
 <script type="text/javascript" src="js/post.js"></script>
+<script type="text/javascript" src="js/thread.js"></script>
+<script type="text/javascript" src="js/comment.js"></script>
+<script type="text/javascript" src="js/delete.js"></script>
 </html>

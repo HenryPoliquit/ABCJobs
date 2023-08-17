@@ -42,7 +42,16 @@
   main.home {
     padding-top: 75px;
   }
-  
+   /* GAPS */
+  .gap-10{
+  	gap: 10px;
+   }
+  .gap-15{
+  	gap: 15px;
+   }
+  .gap-20{
+  	gap: 20px;
+   }
   /*----------  Home Header custom shape  ----------*/
   .custom-shape-divider-top-1686716923 {
     width: 100%;
@@ -233,12 +242,6 @@ input {
 .input .disabled {
 	
 }
-#currency {
-  width: 70px;
-}
-#donation-amount {
-  width: 145px;
-}
 
 /* TEXT AREA */
 .input-textarea {
@@ -343,6 +346,41 @@ label.file-input {
 .share-btn:hover {
 	background-color: var(--primary);
 }
+
+/* ----- Search ----- */
+.search-bar {
+	align-center;
+	display: flex;
+	width: 95%
+}
+.search-input {
+	background-color: var(--bgLight);
+	border: 2px solid var(--bgLight);
+	border-left: 2px solid var(--tertiary);
+	border-radius: 0px 5px 5px 0px;
+	color: var(--primary);
+	font-family: var(--pFont);
+	font-size: 1rem;
+	letter-spacing: 1px;
+	line-height: 2rem;
+	outline: none;
+	padding: 0.5rem 1rem;
+	width: 85%;
+	transition: ease-out 0.3s;
+}
+.search-input:focus {
+	border: 2px solid var(--tertiary);
+}
+.search-btn {
+	background-color: var(--tertiary);
+	border: 2px solid var(--tertiary);
+	border-radius: 5px 0px 0px 5px;
+	color: var(--primary);
+	cursor: pointer;
+	font-size: 2.5rem;
+	width:15%;
+}
+
 /* FORM ALT LINK */
 .formDivider {
 	border: 1px solid var(--paragraph);
@@ -362,7 +400,7 @@ label.file-input {
 	background-color: var(--darkBg);
 	border: 5px solid var(--secondary);
 	border-radius: 10px;
-	height: 500px;
+	height: fit-content;
 	margin: 7rem auto;
 	width: 325px;
 }
@@ -427,6 +465,13 @@ p.util-text {
 }
 
    /*----------  Dashboard Utility Classes  ----------*/
+.dashboard{
+	width: 80vw; 
+	height: fit-content; 
+	border: black 1px solid; 
+	margin-bottom: 40px; 
+	gap: 2vw;
+}
 .dashboard-heading {
 	color: var(--darkBg);
 	font-size: 2rem;
@@ -434,6 +479,59 @@ p.util-text {
 	letter-spacing: 3px;
 	margin: 3rem 1rem 2rem;
 }
+.dashboard-left-column-profile {
+	width: 20vw; 
+	height: 80px; 
+	border: black 1px solid; 
+	padding: 1vw; 
+	border-radius: 10px;
+	gap: 10px;
+}
+.dashboard-left-column-links {
+	width: 20vw; 
+	height: fit-content; 
+	border: black 1px solid; 
+	padding: 1vw; 
+	border-radius: 10px; 
+	gap: 13px;
+}
+
+.dashboard-right-column-profile {
+	width: 54vw; 
+	height: 80px; 
+	border: black 1px solid; 
+	padding: 1vw; 
+	border-radius: 10px; 
+	gap: 10px;"
+}
+
+.dashboard-right-column-content {
+	width: 54vw; 
+	height: fit-content; 
+	border: black 1px solid; 
+	padding: 1vw; 
+	border-radius: 10px; 
+	gap: 10px;"
+}
+
+.dashboard-right-column-comment {
+	width: 40vw; 
+	height: fit-content; 
+	border: black 1px solid; 
+	padding: 1vw; 
+	border-radius: 10px; 
+	gap: 10px;"
+}
+
+.dashboard-right-column-search {
+	width: 54vw; 
+	height: 60px; 
+	border: black 1px solid; 
+	padding: 1vw; 
+	border-radius: 10px; 
+	gap: 10px;"
+}
+
 .dashboard-nav {
 	background-color: var(--darkBg);
 	border-radius: 5px;
@@ -463,14 +561,10 @@ p.util-text {
 background-color: var(--darkBg);
 border-radius: 5px;
 height: fit-content;
-margin: 2rem 1rem 10rem;
-padding: 1rem 0.5rem;
 max-width: 100%;
 overflow-x: scroll;
 }
-.panel-table {
-	width: 80rem;
-}
+
 .dashboard-panel h3 {
 	color: var(--white);
 	font-family: var(--hFont);
@@ -485,9 +579,6 @@ thead.hFont {
 	padding: 0.5rem 1rem;
 	text-align: center;
 	color: var(--paragraph);
-}
-#donationTable {
-	width: 100%;
 }
 tr a, button {
 	border-radius: 5px;
@@ -1151,28 +1242,6 @@ text-align: center;
   font-size: 2.5rem;
   margin: auto;
 }
-/* Testing */
-#chart {
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 2rem 0rem;
-}
-#chart div{
-  background-size: cover;
-  width: 450px;
-  height: 450px;
-}  
-
-#chartContainer {
-  width: 100%;
-  height: 100%;
-}
-
-#pieChart {
-  background-color: rgba(255, 255, 255, 0.8);
-  width: 900px !important;
-  height: 450px !important;
-}
 /*  Profile page */
 #profile-card {
   background-color: var(--darkBg);
@@ -1219,17 +1288,6 @@ text-align: center;
   =            Break Points            =
   =============================================*/
   
-    /*----------  1400 PX  ----------*/
-  @media only screen and (max-width: 1400px) {
-    #chart div {
-    	width: 380px;
-    	height: 380px;
-    }
-    #pieChart {
-      width: 760px !important;
-      height: 380px !important;
-    }
-  }
   /*----------  1200 PX  ----------*/
   @media only screen and (max-width: 1200px) {
     #homeCard {
@@ -1247,14 +1305,6 @@ text-align: center;
     #motorcycle {
       width: 275px
     }
-    #chart div {
-    	width: 350px;
-    	height: 350px;
-    }
-    #pieChart {
-      width: 700px !important;
-      height: 350px !important;
-    }
   }
   
   /*----------  1080 PX  ----------*/
@@ -1264,14 +1314,6 @@ text-align: center;
     }
     #homeCard h2 {
       font-size: 2rem;
-    }
-    #chart div {
-    width: 740px;
-    height: 400px;
-    }
-    #pieChart {
-      width: 740px !important;
-      height: 370px !important;
     }
   }
   
@@ -1300,14 +1342,6 @@ text-align: center;
     .info-container {
     	width: fit-content;
     }
-    #chart div {
-      width: 700px;
-      height: 400px;
-    }
-    #pieChart {
-      width: 700px !important;
-      height: 350px !important;
-    }
   }
   @media only screen and (min-width: 768px) {
     #headerMenuBtn {
@@ -1321,17 +1355,6 @@ text-align: center;
       align-items: center;
       flex-direction: column;
       gap: 2rem;
-    }
-    .panel-table {
-    font-size: 0.75rem;
-    }
-    #chart div {
-    width: 600px;
-    height: 400px;
-    }
-    #pieChart {
-      width: 600px !important;
-      height: 300px !important;
     }
   }
   
@@ -1352,17 +1375,6 @@ text-align: center;
 	    display: block !important;
 	    max-width: 90vw;
     }
-    .panel-table {
-    width: 110vw;
-    }
-    #chart div {
-    width: 500px;
-    height: 400px;
-    }
-    #pieChart {
-      width: 500px !important;
-      height: 250px !important;
-    }
   }
   
   /*----------  500 PX  ----------*/
@@ -1379,14 +1391,6 @@ text-align: center;
     .util-card {
       width: 300px;
     }
-    #chart div {
-    width: 400px;
-    height: 400px;
-    }
-    #pieChart {
-      width: 400px !important;
-      height: 200px !important;
-    }
   }
   
   /*----------  400 PX ----------*/
@@ -1397,14 +1401,6 @@ text-align: center;
     #botLinks {
       flex-direction: column;
       gap: 2.5rem;
-    }
-    #chart div {
-      width: 360px;
-      height: 300px;
-    }    
-    #pieChart {
-      width: 360px !important;
-      height: 180px !important;
     }
   }
   /*=====  End of Break Points  ======*/

@@ -16,13 +16,11 @@ import javax.persistence.PrePersist;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-public class Thread {
-
+public class Comment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	private String name;
 
 	private String description;
 	
@@ -35,22 +33,27 @@ public class Thread {
 
 		date = dateOnly.format(new Date());
 	}
-
+	
+	private Long threadId;
+	
+	private Long postId;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
-	
-	public Thread() {
+
+	public Comment() {
 		super();
 	}
 
-	public Thread(Long id, String name, String description, User user, String date) {
+	public Comment(Long id, String description, String date, Long threadId, Long postId, User user) {
 		super();
 		this.id = id;
-		this.name = name;
 		this.description = description;
-		this.user = user;
 		this.date = date;
+		this.threadId = threadId;
+		this.postId = postId;
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -61,14 +64,6 @@ public class Thread {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -77,20 +72,36 @@ public class Thread {
 		this.description = description;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public String getDate() {
 		return date;
 	}
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public Long getThreadId() {
+		return threadId;
+	}
+
+	public void setThreadId(Long threadId) {
+		this.threadId = threadId;
+	}
+
+	public Long getPostId() {
+		return postId;
+	}
+
+	public void setPostId(Long postId) {
+		this.postId = postId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

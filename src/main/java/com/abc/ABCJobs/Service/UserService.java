@@ -52,6 +52,12 @@ public class UserService {
 		
 	}
 	
+	public User findSpecificUser(long id) {
+		
+		return userRepository.findByid(id);
+		
+	}
+	
 	public User findUsername(String userName) {
 		
 		return userRepository.findByUserName(userName);
@@ -103,6 +109,11 @@ public class UserService {
 		user.getRoles().clear();
 		user.setRoles(new HashSet<>(roleRepository.findBySpecificRoles(role)));
 		userRepository.save(user);
+	}
+	
+	public List<User> search(String keyword) {
+		return userRepository.search(keyword);
+		
 	}
 
 	public boolean verify(String username) {

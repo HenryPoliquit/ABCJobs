@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <jsp:include page="../header.jsp">
-	<jsp:param value="User" name="HTMLtitle" />
+	<jsp:param value="Administrator" name="HTMLtitle" />
 </jsp:include>
 
 <main class="bg2 align-center flex-col">
@@ -50,10 +50,9 @@
 				<a href="search"><button class="submit-btn">Search</button></a> 
 			</div>
 		</div>
-		
 		<!-- 2nd Column -->
 		<div class="flex-col gap-20">
-			<div>
+					<div>
 				<div class="flex dashboard-right-column-profile">
 					<div class="align-start">
 						<c:if test="${gender == 'Male'}">
@@ -115,15 +114,15 @@
 			</sf:form> 
 				<button id="closeCreateThread" class="material-icons modal-close">close</button>
 			</dialog>
-
+		
 			<!-- Threads -->
-			<c:if test="${empty recentThreads}">
+			<c:if test="${empty thread}">
 				<div class="flex-col dashboard-right-column-content">
 						<h4 class="">No threads found</h4>
 				</div>
 			</c:if>
-			<c:if test="${not empty recentThreads}">
-			<c:forEach items="${recentThreads}" var="r">
+			<c:if test="${not empty thread}">
+			<c:forEach items="${thread}" var="r">
 				<div class="flex-col dashboard-right-column-content">
 					<div class="flex gap-10">
 						<div class="align-start">
@@ -164,65 +163,6 @@
 						style="gap: 25px; padding-top: 1vw; border-top: 1px solid black;">
 						<button class="share-btn">Like</button>
 						<a href="/thread_detail?tId=${r.getId()}"><button
-								class="share-btn">Comment</button></a>
-						<button class="share-btn">Share</button>
-					</div>
-				</div>
-			</c:forEach>
-			</c:if>
-			
-			<!-- Posts -->
-			<c:if test="${empty recent}">
-				<div class="flex-col dashboard-right-column-content">
-						<h4 class="">No posts found</h4>
-				</div>
-			</c:if>
-			<c:if test="${not empty recent}">
-			<c:forEach items="${recent}" var="r">
-				<div class="flex-col dashboard-right-column-content">
-					<div class="flex gap-10">
-						<div class="align-start">
-							<c:if test="${r.getUser().getGender() == 'Male'}">
-								<img src="images/Profile-male.svg" alt="profile picture"
-									width="75" height="75" />
-							</c:if>
-							<c:if test="${r.getUser().getGender() == 'Female'}">
-								<img src="images/Profile-female.svg" alt="profile picture"
-									width="75" height="75" />
-							</c:if>
-							<c:if test="${r.getUser().getGender() == 'Prefer not to say'}">
-								<img src="images/Profile-wildcard.png" alt="profile picture"
-									width="75" height="75" />
-							</c:if>
-							<c:if test="${r.getUser().getGender() == null}">
-								<img src="images/Profile-wildcard.png" alt="profile picture"
-									width="75" height="75" />
-							</c:if>
-						</div>
-						<div class="flex-col" style="justify-content: center;">
-							<c:if test="${r.getUser().getUserName() != uname}">
-								<h3><a href="view_profile?uId=${r.getUser().getId()}">${r.getUser().getName()}</a></h3>
-							</c:if>
-							<c:if test="${r.getUser().getUserName() == uname}">
-								<h3><a href="profile">${r.getUser().getName()}</a></h3>
-							</c:if>
-							<p>${r.getUser().getAddress()}</p>
-						</div>
-					</div>
-					<div class="flex">
-						<div>
-							<h4>${r.getName()}</h4>
-							<p>${r.getDescription()}</p>
-						</div>
-					</div>
-					<div class="flex">
-						<img src="${r.getPhotoImagePath()}" alt="${r.getPhotos()}"
-							style="width: 100%; height: 200px;" />
-					</div>
-					<div class="flex center"
-						style="gap: 25px; padding-top: 1vw; border-top: 1px solid black;">
-						<button class="share-btn">Like</button>
-						<a href="/post_detail?pId=${r.getId()}"><button
 								class="share-btn">Comment</button></a>
 						<button class="share-btn">Share</button>
 					</div>
